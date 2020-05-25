@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to ChatApp</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="form">
+            <form class="register-form" onsubmit="return validate()">
+                <input type="text" id="firstname" placeholder="Firstname" autocomplete="off">
+                <input type="text" id="lastname" placeholder="Lastname" autocomplete="off">
+                <input type="text" id="email" placeholder="Email" autocomplete="off">
+                <input type="text" id="password" placeholder="Password" autocomplete="off">
+                <input type="text" id="confirmPassword" placeholder="Type Password again" autocomplete="off">
+                <button type="submit">Register</button>
+                <p class="message">Already Registered? <a href="index.html">Login</a>
+                </p>
+                <br>
+                <span id="returnMessage" > </span>
+            </form>
+            </div>
+        </div>
+    <script>
+        function validate(){
+            var firstname = document.getElementById("firstname").value;
+            var lastname = document.getElementById("lastname").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var emailPattern = /^[a-z][a-z0-9]*[.+-]?[a-z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]{2,3}([.]{1}[a-z]{2,3})?$/;
+
+        if(firstname == "") {
+            document.getElementById("returnMessage").innerHTML="Firstname cannot be empty...!";
+            return false;
+        }
+        else if (firstname.length <= 2 || !isNaN(firstname)) {
+            document.getElementById("returnMessage").innerHTML="Invalid Firstname...!";
+            return false;
+        }
+        else if(lastname == "") {
+            document.getElementById("returnMessage").innerHTML="Lastname cannot be empty...!";
+            return false;
+        }
+        else if (lastname.length <= 2 || !isNaN(lastname)) {
+            document.getElementById("returnMessage").innerHTML="Invalid Lastname...!";
+            return false;
+        }
+        else if(email == "") {
+            document.getElementById("returnMessage").innerHTML="Email cannot be empty...!";
+           return false;
+        }
+        else if(!email.match(emailPattern)) {
+            document.getElementById("returnMessage").innerHTML="Invalid Email...!";
+            return false;
+        }
+        else if(password == "" || password.length < 8 ) {
+            document.getElementById("returnMessage").innerHTML="Password must be greater than eight characters...!";
+            return false;
+        }
+        else if(password != confirmPassword) {
+            document.getElementById("returnMessage").innerHTML="Password Not Matched...!";
+            return false;   
+        }
+
+    }
+    </script>
+    </body>
+</html>
